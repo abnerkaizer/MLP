@@ -5,52 +5,14 @@ public class Main {
     private static double[][][] classe2 = new double [49][2][];
     private static double[][][] classe3 = new double[288][2][];
     private static List<double[][][]> classes = new ArrayList<>(3);
-    private static List<ArrayList<Double>> medias = new ArrayList<>(3);
-    private static List<ArrayList<Double>> desvios = new ArrayList<>(3);
 
     public static void main(String[] args) {
-        setBases();
+        setClasses();
         double startTime = System.currentTimeMillis();
-        //execute(10000);
-        classificadorBayes();
+        execute(10000);
         double endTime = System.currentTimeMillis();
         double tempo = (endTime-startTime)/1000;
         System.out.printf("Tempo: %.2f s\n",tempo);
-        
-    }
-    private static void classificadorBayes(){
-        double classe [][][];
-
-        for (int j = 0; j < classes.size(); j++) {
-            classe = classes.get(j);
-            ArrayList<Double> media = new ArrayList<>(4);
-            ArrayList<Double> desvio = new ArrayList<>(4);
-
-            //Treino
-            double entradas [];
-            for (int i = 0; i < 4; i++) {
-                double soma = 0;
-                for (int k = 0; k <(int) classe.length*0.7; k++) {
-                    entradas = classe[k][0];
-                    soma += entradas[i];
-                }
-                media.add(soma/(int) classe.length*0.7);
-            }
-            medias.add(media);
-            for (int i = 0; i < 4; i++) {
-                double soma = 0;
-                for (int k = 0; k < (int) classe.length*0.7; k++) {
-                    entradas = classe[k][0];
-                    soma += Math.pow(entradas[i]-media.get(i),2);
-                }
-                desvio.add(Math.sqrt(soma/(int) classe.length*0.7));
-            }
-            desvios.add(desvio);
-        }
-
-        //imprimeMatriz(medias);
-        //imprimeMatriz(desvios);
-        //Teste
         
     }
     private static void imprimeMatriz(List<ArrayList<Double>> matriz){
@@ -156,7 +118,7 @@ public class Main {
     }
 
 
-    private static void setBases(){
+    private static void setClasses(){
         for (int i = 0; i < 288; i++) {
             classe1[i][0] = new double[4];
             classe1[i][1] = new double[3];
